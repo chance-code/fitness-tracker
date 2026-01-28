@@ -31,10 +31,82 @@
     [data-theme="arsenal"] {
       --accent: #DB0007;
       --accent-dim: #9C0004;
+      --bg: #0a0e18;
+      --surface: #111827;
+      --surface-light: #1c2640;
+      --arsenal-gold: #D4AF37;
     }
-    [data-theme="arsenal"] .streak-badge .fire { color: #DB0007; }
+    [data-theme="arsenal"] .header {
+      background: linear-gradient(135deg, #9C0004, #DB0007);
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      margin-bottom: 10px;
+    }
+    [data-theme="arsenal"] .header h1 { color: #fff; }
+    [data-theme="arsenal"] .header h1 span { color: #fff; }
+    [data-theme="arsenal"] .header h1 .cannon-icon {
+      display: inline-block;
+      width: 24px; height: 24px;
+      vertical-align: middle;
+      margin-right: 6px;
+      filter: brightness(0) invert(1);
+    }
+    [data-theme="arsenal"] .header .arsenal-motto {
+      display: block;
+      font-size: 0.55rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    [data-theme="arsenal"] .streak-badge {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    [data-theme="arsenal"] .streak-badge .fire { color: #D4AF37; }
+    [data-theme="arsenal"] .user-bar {
+      border-left: 3px solid #DB0007;
+    }
     [data-theme="arsenal"] .user-week-pill {
-      background: rgba(219, 0, 7, 0.15);
+      background: rgba(219, 0, 7, 0.2);
+      color: #ff6b6b;
+    }
+    [data-theme="arsenal"] .user-phase {
+      color: #D4AF37;
+    }
+    [data-theme="arsenal"] .exercise-check.checked {
+      background: #D4AF37;
+      border-color: #D4AF37;
+      color: #000;
+    }
+    [data-theme="arsenal"] .program-progress-pct {
+      color: #D4AF37;
+    }
+    [data-theme="arsenal"] .program-progress-fill {
+      background: linear-gradient(90deg, #9C0004, #DB0007, #D4AF37);
+    }
+    [data-theme="arsenal"] .day-card.today {
+      border-color: #DB0007;
+      box-shadow: 0 0 12px rgba(219, 0, 7, 0.3);
+    }
+    [data-theme="arsenal"] .week-dot.done {
+      background: #D4AF37;
+    }
+    [data-theme="arsenal"] .day-progress-fill {
+      background: linear-gradient(90deg, #DB0007, #D4AF37);
+    }
+    [data-theme="arsenal"] .day-progress-ring .fg {
+      stroke: #D4AF37;
+    }
+    [data-theme="arsenal"] .exercise-video {
+      color: #DB0007;
+    }
+    [data-theme="arsenal"] .week-nav-btn:active {
+      background: rgba(219, 0, 7, 0.2);
+    }
+    [data-theme="arsenal"] .logout-btn:active {
+      background: rgba(219, 0, 7, 0.2);
       color: #DB0007;
     }
 
@@ -1357,7 +1429,7 @@ function initApp() {
   document.body.dataset.theme = currentUserPin === '1717' ? 'arsenal' : '';
   const headerH1 = document.querySelector('.header h1');
   if (currentUserPin === '1717') {
-    headerH1.innerHTML = '<span>Arsenal</span> FC';
+    headerH1.innerHTML = `<svg class="cannon-icon" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><path d="M5 45 L20 45 L20 35 L75 28 L75 22 L95 22 L95 28 L85 30 L85 35 L75 37 L20 42 L20 45 Z M15 45 L15 55 L25 55 L25 45 Z" fill="currentColor"/></svg><span>Arsenal</span> FC<span class="arsenal-motto">Victoria Concordia Crescit</span>`;
   } else {
     headerH1.innerHTML = '<span>Fit</span>Track';
   }
