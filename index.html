@@ -309,7 +309,7 @@
 <!-- App -->
 <div id="app">
   <div class="header">
-    <h1><span>Fit</span>Track</h1>
+    <h1><span id="user-greeting">Fit</span>Track</h1>
     <div class="streak-badge">
       <span class="fire">&#x1F525;</span>
       <span id="streak-count">0</span> day streak
@@ -336,93 +336,264 @@
 
 <script>
 // ── CONFIG ──
-const PIN = '1234';
 const CHATGPT_URL = 'https://chatgpt.com/s/dr_69798a14ed2c8191be3a6390a6b87767';
 
-// ── WORKOUT PLAN ──
-const WORKOUT_PLAN = [
-  {
-    day: 'Monday',
-    focus: 'Strength + Plyometrics',
-    exercises: [
-      { name: 'Box Jumps', sets: 3, reps: 5, video: 'https://www.youtube.com/watch?v=NBY9-kTuHEk' },
-      { name: 'Lateral Bounds', sets: 3, reps: '6/side', video: 'https://www.youtube.com/watch?v=S8pVw-gGwqM' },
-      { name: 'Squats', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
-      { name: 'Dumbbell Lunges', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=D7KaRcUTQeE' },
-      { name: 'Pull-ups', sets: 3, reps: 'AMAP', video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g' },
-      { name: 'Dumbbell Bench Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=VmB1G1K7v94' },
-      { name: 'Plank', sets: 3, reps: '30s', video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
+// ── USERS ──
+const USERS = {
+  '1717': {
+    name: 'Tate',
+    plan: [
+      {
+        day: 'Monday',
+        focus: 'Speed & Plyos + Lower Body Strength',
+        exercises: [
+          { name: 'Max Sprints (30-40m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
+          { name: 'Box Jumps (24")', sets: 3, reps: 5, video: 'https://www.youtube.com/watch?v=NBY9-kTuHEk' },
+          { name: 'Back Squats', sets: 4, reps: 6, video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
+          { name: 'Romanian Deadlifts', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=7j-2w4-P14I' },
+          { name: 'Step-ups', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=dQqApCGd5Ss' },
+          { name: 'Plank', sets: 3, reps: '30s', video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
+        ]
+      },
+      {
+        day: 'Tuesday',
+        focus: 'Recovery & Ball Work',
+        exercises: [
+          { name: 'Light Cycling / Jog', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
+          { name: 'Static Stretching Routine', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
+          { name: 'Foam Rolling', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=SxiDBPBQ1TY' },
+          { name: 'Technical Soccer Training', sets: 1, reps: '45 min', video: 'https://www.youtube.com/watch?v=NXB3l02pmKs' },
+        ]
+      },
+      {
+        day: 'Wednesday',
+        focus: 'Agility & Upper/Full Body Strength',
+        exercises: [
+          { name: '5-10-5 Shuttle Drill', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=1SnMjGJ80vA' },
+          { name: 'Lateral Bounds (skater jumps)', sets: 3, reps: '8/side', video: 'https://www.youtube.com/watch?v=S8pVw-gGwqM' },
+          { name: 'Dumbbell Bench Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=VmB1G1K7v94' },
+          { name: 'Pull-ups', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g' },
+          { name: 'Walking Lunges', sets: 3, reps: '10/leg', video: 'https://www.youtube.com/watch?v=L8fvypPrzzs' },
+          { name: 'Medicine Ball Slams', sets: 3, reps: 6, video: 'https://www.youtube.com/watch?v=nPlNHfnUQOg' },
+          { name: 'Side Planks', sets: 2, reps: '30s/side', video: 'https://www.youtube.com/watch?v=K2VljzCC16g' },
+        ]
+      },
+      {
+        day: 'Thursday',
+        focus: 'Conditioning & Mobility',
+        exercises: [
+          { name: 'Interval Runs (60s hard / 2 min walk)', sets: 6, reps: 1, video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
+          { name: 'Dribbling Drills / Juggling', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=NXB3l02pmKs' },
+          { name: 'Yoga / Mobility Session', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
+        ]
+      },
+      {
+        day: 'Friday',
+        focus: 'Acceleration & Full Body Power',
+        exercises: [
+          { name: 'Sled/Resisted Sprints (15m)', sets: 6, reps: 1, video: 'https://www.youtube.com/watch?v=vMVaPWKRHF8' },
+          { name: 'Free Sprints (30m)', sets: 2, reps: 1, video: 'https://www.youtube.com/watch?v=5HLbPWfEsHQ' },
+          { name: 'Depth Jumps (12" box)', sets: 3, reps: 5, video: 'https://www.youtube.com/watch?v=bm2LDQJxNVM' },
+          { name: 'Trap-bar Deadlifts', sets: 4, reps: 5, video: 'https://www.youtube.com/watch?v=r4MzxtBKyNE' },
+          { name: 'Bulgarian Split Squats', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=2C-uNgKwPLE' },
+          { name: 'Overhead Press', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=QAQ64hK4Xxs' },
+          { name: 'Bent-over Rows', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=FWJR5Ve8bnQ' },
+          { name: 'Nordic Hamstring Curls', sets: 2, reps: 5, video: 'https://www.youtube.com/watch?v=WnIBnBBEveE' },
+        ]
+      },
+      {
+        day: 'Saturday',
+        focus: 'Active Rest / Cross-Train',
+        exercises: [
+          { name: 'Pickup Sport (basketball, futsal)', sets: 1, reps: '30-45 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
+          { name: 'Core Stability Work', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=I5xbsA71v1A' },
+          { name: 'Foam Rolling', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=SxiDBPBQ1TY' },
+        ]
+      },
+      {
+        day: 'Sunday',
+        focus: 'Full Rest',
+        exercises: [
+          { name: 'Rest & Recovery', sets: 1, reps: 'All day', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
+          { name: 'Foam Rolling (optional)', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=SxiDBPBQ1TY' },
+        ]
+      }
     ]
   },
-  {
-    day: 'Tuesday',
-    focus: 'Light Recovery / Technical',
-    exercises: [
-      { name: 'Mobility / Dynamic Stretching', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=TSIbzfcnv_8' },
-      { name: 'Foam Rolling', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=SxiDBPBQ1TY' },
-      { name: 'Light Bike Ride', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
-      { name: 'Technical Ball Work (optional)', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=NXB3l02pmKs' },
+
+  '1234': {
+    name: 'Emma',
+    plan: [
+      {
+        day: 'Monday',
+        focus: 'Speed & Plyos + Lower Body Strength',
+        exercises: [
+          { name: 'Sprint Buildups (30m)', sets: 3, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
+          { name: 'Box Jumps (18")', sets: 3, reps: 4, video: 'https://www.youtube.com/watch?v=NBY9-kTuHEk' },
+          { name: 'Goblet Squats', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=MeIiIdhvXT4' },
+          { name: 'Bodyweight Lunges', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=D7KaRcUTQeE' },
+          { name: 'Glute Bridges', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=OUgsJ8-Vi0E' },
+          { name: 'Plank', sets: 3, reps: '20s', video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
+        ]
+      },
+      {
+        day: 'Tuesday',
+        focus: 'Recovery & Ball Work',
+        exercises: [
+          { name: 'Light Jog / Bike', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
+          { name: 'Dynamic Stretching', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=TSIbzfcnv_8' },
+          { name: 'Foam Rolling', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=SxiDBPBQ1TY' },
+          { name: 'Technical Ball Work', sets: 1, reps: '30 min', video: 'https://www.youtube.com/watch?v=NXB3l02pmKs' },
+        ]
+      },
+      {
+        day: 'Wednesday',
+        focus: 'Agility & Upper Body Strength',
+        exercises: [
+          { name: 'Cone Shuttle Drill', sets: 3, reps: 1, video: 'https://www.youtube.com/watch?v=1SnMjGJ80vA' },
+          { name: 'Skater Jumps', sets: 3, reps: '6/side', video: 'https://www.youtube.com/watch?v=S8pVw-gGwqM' },
+          { name: 'Push-ups', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=IODxDxX7oi4' },
+          { name: 'Assisted Pull-ups / Lat Pulldown', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=CAwf7n6Luuc' },
+          { name: 'Bodyweight Walking Lunges', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=L8fvypPrzzs' },
+          { name: 'Medicine Ball Slams', sets: 2, reps: 6, video: 'https://www.youtube.com/watch?v=nPlNHfnUQOg' },
+          { name: 'Side Planks', sets: 2, reps: '20s/side', video: 'https://www.youtube.com/watch?v=K2VljzCC16g' },
+        ]
+      },
+      {
+        day: 'Thursday',
+        focus: 'Conditioning & Mobility',
+        exercises: [
+          { name: 'Interval Runs (30s hard / 60s walk)', sets: 6, reps: 1, video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
+          { name: 'Dribbling Drills / Juggling', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=NXB3l02pmKs' },
+          { name: 'Yoga / Stretching', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
+        ]
+      },
+      {
+        day: 'Friday',
+        focus: 'Acceleration & Strength',
+        exercises: [
+          { name: 'Hill Sprints (15m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=vMVaPWKRHF8' },
+          { name: 'Broad Jumps', sets: 3, reps: 4, video: 'https://www.youtube.com/watch?v=bBLGMzPGmVo' },
+          { name: 'Trap-bar Deadlifts (light)', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=r4MzxtBKyNE' },
+          { name: 'Split Squats', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=2C-uNgKwPLE' },
+          { name: 'Dumbbell Rows', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=roCP6wCXPqo' },
+          { name: 'Dead Bugs', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=I5xbsA71v1A' },
+        ]
+      },
+      {
+        day: 'Saturday',
+        focus: 'Active Rest / Cross-Train',
+        exercises: [
+          { name: 'Fun Sport (swimming, bike, hoops)', sets: 1, reps: '30 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
+          { name: 'Gentle Stretching', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
+        ]
+      },
+      {
+        day: 'Sunday',
+        focus: 'Full Rest',
+        exercises: [
+          { name: 'Rest & Recovery', sets: 1, reps: 'All day', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
+          { name: 'Foam Rolling (optional)', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=SxiDBPBQ1TY' },
+        ]
+      }
     ]
   },
-  {
-    day: 'Wednesday',
-    focus: 'Speed & Agility',
-    exercises: [
-      { name: 'Dynamic Warm-up', sets: 1, reps: '5 min', video: 'https://www.youtube.com/watch?v=TSIbzfcnv_8' },
-      { name: 'Sprint Starts (15 yd)', sets: 6, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
-      { name: 'Flying Sprints (30 yd)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=5HLbPWfEsHQ' },
-      { name: 'Zig-Zag Cone Drill', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=NEfRMAjRDCQ' },
-      { name: 'T-Drill', sets: 2, reps: 1, video: 'https://www.youtube.com/watch?v=Vy4iMBMGFGQ' },
-    ]
-  },
-  {
-    day: 'Thursday',
-    focus: 'Upper Strength + Conditioning',
-    exercises: [
-      { name: 'Trap-bar Deadlifts', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=r4MzxtBKyNE' },
-      { name: 'Bulgarian Split Squats', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=2C-uNgKwPLE' },
-      { name: 'Overhead Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=QAQ64hK4Xxs' },
-      { name: 'One-arm Dumbbell Rows', sets: 3, reps: '10/arm', video: 'https://www.youtube.com/watch?v=roCP6wCXPqo' },
-      { name: 'Nordic Hamstring Curls', sets: 2, reps: 5, video: 'https://www.youtube.com/watch?v=WnIBnBBEveE' },
-      { name: 'Side Plank', sets: 2, reps: '30s/side', video: 'https://www.youtube.com/watch?v=K2VljzCC16g' },
-      { name: 'Intervals (30s run / 30s walk)', sets: 8, reps: 1, video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
-    ]
-  },
-  {
-    day: 'Friday',
-    focus: 'Rest / Cross-Train',
-    exercises: [
-      { name: 'Gentle Stretching', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
-      { name: 'Foam Rolling', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=SxiDBPBQ1TY' },
-      { name: 'Light Cross-Training (swim/bike/hoops)', sets: 1, reps: '20-30 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
-    ]
-  },
-  {
-    day: 'Saturday',
-    focus: 'Speed/Power + Strength',
-    exercises: [
-      { name: 'Bounding', sets: 3, reps: '20 yd', video: 'https://www.youtube.com/watch?v=bBLGMzPGmVo' },
-      { name: 'Jump Squats', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=A-cFYWvaHr0' },
-      { name: 'Hill Sprints (20m)', sets: 6, reps: 1, video: 'https://www.youtube.com/watch?v=vMVaPWKRHF8' },
-      { name: 'Medicine Ball Throws', sets: 3, reps: 6, video: 'https://www.youtube.com/watch?v=nPlNHfnUQOg' },
-      { name: 'Dead Bugs (core)', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=I5xbsA71v1A' },
-      { name: 'Agility Mirror Drill', sets: 1, reps: '5 min', video: 'https://www.youtube.com/watch?v=y0WfRAlNsYM' },
-    ]
-  },
-  {
-    day: 'Sunday',
-    focus: 'Rest & Recovery',
-    exercises: [
-      { name: 'Gentle Stretching / Yoga', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
-      { name: 'Foam Rolling', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=SxiDBPBQ1TY' },
+
+  '2626': {
+    name: 'Chance',
+    plan: [
+      {
+        day: 'Monday',
+        focus: 'Chest & Triceps',
+        exercises: [
+          { name: 'Barbell Bench Press', sets: 4, reps: '8-10', video: 'https://www.youtube.com/watch?v=rT7DgCr-3pg' },
+          { name: 'Incline Dumbbell Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=8iPEnn-ltC8' },
+          { name: 'Cable Flyes', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=Iwe6AmxVf7o' },
+          { name: 'Dips (weighted)', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=6kALZikXxLc' },
+          { name: 'Tricep Rope Pushdowns', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=vB5OHsJ3EME' },
+          { name: 'Overhead Tricep Extension', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=YbX7Wd8jQ-Q' },
+          { name: 'Incline Treadmill Walk', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
+        ]
+      },
+      {
+        day: 'Tuesday',
+        focus: 'Back & Biceps',
+        exercises: [
+          { name: 'Barbell Rows', sets: 4, reps: '8-10', video: 'https://www.youtube.com/watch?v=FWJR5Ve8bnQ' },
+          { name: 'Lat Pulldowns', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=CAwf7n6Luuc' },
+          { name: 'Seated Cable Rows', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=GZbfZ033f74' },
+          { name: 'Face Pulls', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=rep-qVOkqgk' },
+          { name: 'Barbell Curls', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo' },
+          { name: 'Hammer Curls', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=zC3nLlEvin4' },
+          { name: 'Stairmaster / HIIT Bike', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
+        ]
+      },
+      {
+        day: 'Wednesday',
+        focus: 'Legs (Quad Focus)',
+        exercises: [
+          { name: 'Barbell Back Squats', sets: 4, reps: '8-10', video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
+          { name: 'Leg Press', sets: 4, reps: 12, video: 'https://www.youtube.com/watch?v=IZxyjW7MPJQ' },
+          { name: 'Walking Lunges', sets: 3, reps: '10/leg', video: 'https://www.youtube.com/watch?v=L8fvypPrzzs' },
+          { name: 'Leg Extensions', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=YyvSfVjQeL0' },
+          { name: 'Calf Raises', sets: 4, reps: 15, video: 'https://www.youtube.com/watch?v=gwLzBJYoWlI' },
+          { name: 'Hanging Leg Raises', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=Pr1ieGZ5atk' },
+        ]
+      },
+      {
+        day: 'Thursday',
+        focus: 'Shoulders & Abs',
+        exercises: [
+          { name: 'Overhead Press', sets: 4, reps: '8-10', video: 'https://www.youtube.com/watch?v=QAQ64hK4Xxs' },
+          { name: 'Lateral Raises', sets: 4, reps: 15, video: 'https://www.youtube.com/watch?v=3VcKaXpzqRo' },
+          { name: 'Rear Delt Flyes', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=EA7u4Q_8HQ0' },
+          { name: 'Cable Lateral Raises', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=PPrzBWZDOhA' },
+          { name: 'Shrugs', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=cJRVVxmytaM' },
+          { name: 'Cable Crunches', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=ToJeyhydUxU' },
+          { name: 'Incline Treadmill Walk', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
+        ]
+      },
+      {
+        day: 'Friday',
+        focus: 'Legs (Hamstring & Glute Focus)',
+        exercises: [
+          { name: 'Romanian Deadlifts', sets: 4, reps: 10, video: 'https://www.youtube.com/watch?v=7j-2w4-P14I' },
+          { name: 'Bulgarian Split Squats', sets: 3, reps: '10/leg', video: 'https://www.youtube.com/watch?v=2C-uNgKwPLE' },
+          { name: 'Leg Curls', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=1Tq3QdYUuHs' },
+          { name: 'Hip Thrusts', sets: 4, reps: 12, video: 'https://www.youtube.com/watch?v=SEdqd1n0cvg' },
+          { name: 'Calf Raises', sets: 4, reps: 15, video: 'https://www.youtube.com/watch?v=gwLzBJYoWlI' },
+          { name: 'Plank Variations', sets: 3, reps: '30s', video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
+        ]
+      },
+      {
+        day: 'Saturday',
+        focus: 'Arms & Cardio',
+        exercises: [
+          { name: 'Close-grip Bench Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=nEF0bv2FW94' },
+          { name: 'EZ-bar Curls', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo' },
+          { name: 'Skull Crushers', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=d_KZxkY_0cM' },
+          { name: 'Incline Dumbbell Curls', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=soxrZlIl35U' },
+          { name: 'Cable Curls / Pushdowns superset', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=vB5OHsJ3EME' },
+          { name: 'HIIT Cardio (bike or rowing)', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
+        ]
+      },
+      {
+        day: 'Sunday',
+        focus: 'Rest & Recovery',
+        exercises: [
+          { name: 'Full Rest / Light Walk', sets: 1, reps: '30 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
+          { name: 'Stretching / Foam Rolling', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
+        ]
+      }
     ]
   }
-];
+};
+
+// ── STATE ──
+let currentUser = null;
+let WORKOUT_PLAN = [];
 
 // ── HELPERS ──
-const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const DAY_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-
 function getWeekKey() {
   const now = new Date();
   const start = new Date(now.getFullYear(), 0, 1);
@@ -431,7 +602,7 @@ function getWeekKey() {
 }
 
 function storageKey(dayIndex, exerciseIndex) {
-  return `ft-${getWeekKey()}-${dayIndex}-${exerciseIndex}`;
+  return `ft-${currentUser.name}-${getWeekKey()}-${dayIndex}-${exerciseIndex}`;
 }
 
 function isChecked(dayIndex, exerciseIndex) {
@@ -456,8 +627,7 @@ function getDayCompletion(dayIndex) {
 }
 
 function getTodayPlanIndex() {
-  const jsDay = new Date().getDay(); // 0=Sun
-  // WORKOUT_PLAN is Mon(0)–Sun(6), JS getDay is Sun(0)–Sat(6)
+  const jsDay = new Date().getDay();
   return jsDay === 0 ? 6 : jsDay - 1;
 }
 
@@ -476,7 +646,7 @@ function getStreak() {
     const exercises = WORKOUT_PLAN[planIdx].exercises;
     let allDone = exercises.length > 0;
     for (let i = 0; i < exercises.length; i++) {
-      if (localStorage.getItem(`ft-${wk}-${planIdx}-${i}`) !== '1') {
+      if (localStorage.getItem(`ft-${currentUser.name}-${wk}-${planIdx}-${i}`) !== '1') {
         allDone = false;
         break;
       }
@@ -484,7 +654,6 @@ function getStreak() {
     if (allDone) {
       streak++;
     } else {
-      // If checking today and it's not done yet, skip (don't break streak)
       if (d === 0) continue;
       break;
     }
@@ -494,7 +663,10 @@ function getStreak() {
 
 // ── PIN GATE ──
 (function initPin() {
-  if (sessionStorage.getItem('ft-auth') === '1') {
+  const savedUser = sessionStorage.getItem('ft-user');
+  if (savedUser && USERS[savedUser]) {
+    currentUser = USERS[savedUser];
+    WORKOUT_PLAN = currentUser.plan;
     document.getElementById('pin-gate').classList.add('hidden');
     document.getElementById('app').classList.add('visible');
     initApp();
@@ -525,8 +697,10 @@ function getStreak() {
     updateDots();
     if (entered.length === 4) {
       setTimeout(() => {
-        if (entered === PIN) {
-          sessionStorage.setItem('ft-auth', '1');
+        if (USERS[entered]) {
+          currentUser = USERS[entered];
+          WORKOUT_PLAN = currentUser.plan;
+          sessionStorage.setItem('ft-user', entered);
           document.getElementById('pin-gate').classList.add('hidden');
           document.getElementById('app').classList.add('visible');
           initApp();
@@ -545,7 +719,6 @@ function getStreak() {
     btn.addEventListener('click', () => onDigit(String(i)));
     padEl.appendChild(btn);
   }
-  // bottom row: empty, 0, delete
   const empty = document.createElement('div');
   padEl.appendChild(empty);
 
@@ -567,6 +740,7 @@ function getStreak() {
 
 // ── APP INIT ──
 function initApp() {
+  document.getElementById('user-greeting').textContent = currentUser.name + "'s ";
   document.getElementById('chatgpt-link').href = CHATGPT_URL;
   renderWeekSummary();
   renderDayCards();
@@ -578,10 +752,6 @@ function renderWeekSummary() {
   const labelsContainer = document.getElementById('week-labels');
   dotsContainer.innerHTML = '';
   labelsContainer.innerHTML = '';
-
-  // Display Mon–Sun order
-  const order = [1,2,3,4,5,6,0]; // JS day indices Mon=1..Sat=6, Sun=0
-  const todayPlanIdx = getTodayPlanIndex();
 
   for (let i = 0; i < 7; i++) {
     const comp = getDayCompletion(i);
@@ -648,15 +818,12 @@ function renderDayCards() {
         }).join('')}
       </div>`;
 
-    // Toggle expand
     card.querySelector('.day-card-header').addEventListener('click', () => {
       const wasExpanded = card.classList.contains('expanded');
-      // Collapse all
       container.querySelectorAll('.day-card.expanded').forEach(c => c.classList.remove('expanded'));
       if (!wasExpanded) card.classList.add('expanded');
     });
 
-    // Checkbox clicks
     card.querySelectorAll('.exercise-check').forEach(cb => {
       cb.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -670,7 +837,6 @@ function renderDayCards() {
         cb.closest('.exercise-item').querySelector('.exercise-name')
           .classList.toggle('done', nowChecked);
 
-        // Update progress
         const newComp = getDayCompletion(di);
         const circ = 2 * Math.PI * 13;
         card.querySelector('.fg').style.strokeDashoffset = circ * (1 - newComp.pct);
@@ -682,8 +848,6 @@ function renderDayCards() {
     });
 
     container.appendChild(card);
-
-    // Auto-expand today
     if (dayIdx === todayIdx) card.classList.add('expanded');
   });
 }
