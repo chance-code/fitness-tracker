@@ -269,32 +269,6 @@
     }
     .week-readonly-note.visible { display: block; }
 
-    /* ── CHATGPT LINK ── */
-    .chatgpt-link {
-      display: flex; align-items: center; gap: 10px;
-      background: linear-gradient(135deg, #1e3a2f, #1e1e1e);
-      border: 1px solid #2a4a3a;
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      margin-bottom: 16px;
-      text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.2s;
-    }
-    .chatgpt-link:active { border-color: var(--accent); }
-    .chatgpt-link .icon {
-      font-size: 1.3rem; flex-shrink: 0;
-    }
-    .chatgpt-link .label {
-      font-size: 0.9rem; font-weight: 600;
-    }
-    .chatgpt-link .sublabel {
-      font-size: 0.75rem; color: var(--text-secondary);
-    }
-    .chatgpt-link .arrow {
-      margin-left: auto; color: var(--text-secondary);
-    }
-
     /* ── DAY CARDS ── */
     .day-card {
       background: var(--surface);
@@ -476,22 +450,10 @@
     <div class="week-readonly-note" id="week-readonly-note">Viewing past week (read-only)</div>
   </div>
 
-  <a class="chatgpt-link" id="chatgpt-link" href="https://chat.openai.com" target="_blank" rel="noopener">
-    <span class="icon">&#x1F4AC;</span>
-    <div>
-      <div class="label">ChatGPT Deep Research</div>
-      <div class="sublabel">Open workout research</div>
-    </div>
-    <span class="arrow">&#x203A;</span>
-  </a>
-
   <div id="day-cards"></div>
 </div>
 
 <script>
-// ── CONFIG ──
-const CHATGPT_URL = 'https://chatgpt.com/s/dr_69798a14ed2c8191be3a6390a6b87767';
-
 // ── AVATAR COLORS ──
 const AVATAR_COLORS = {
   'T': '#00e676',
@@ -511,14 +473,16 @@ const USERS = {
         plan: [
           {
             day: 'Monday',
-            focus: 'Speed & Plyos + Lower Body Strength',
+            focus: 'Sprint Mechanics + Lower Body Strength',
             exercises: [
-              { name: 'Sprint Buildups (30-40m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
-              { name: 'Box Jumps (20")', sets: 3, reps: 5, video: 'https://www.youtube.com/watch?v=NBY9-kTuHEk' },
+              { name: 'Wall Drill (static + alternating)', sets: 2, reps: '8/leg', video: 'https://www.youtube.com/watch?v=pra3hWZq1xg' },
+              { name: 'Light Sled Push (10-15% BW, 10m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=vMVaPWKRHF8' },
+              { name: 'Free Acceleration (10m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
+              { name: 'Fly-In Sprint (15m build → 20m fly)', sets: 3, reps: 1, video: 'https://www.youtube.com/watch?v=5HLbPWfEsHQ' },
+              { name: 'Pogos (double-leg, fast contacts)', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=Vu3JkHB8jLw' },
               { name: 'Back Squats', sets: 3, reps: '8-10', video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
               { name: 'Romanian Deadlifts', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=7j-2w4-P14I' },
               { name: 'Step-ups', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=dQqApCGd5Ss' },
-              { name: 'Plank', sets: 3, reps: '30s', video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
             ]
           },
           {
@@ -533,14 +497,14 @@ const USERS = {
           },
           {
             day: 'Wednesday',
-            focus: 'Agility & Upper/Full Body Strength',
+            focus: 'Decel & COD + Upper Body Strength',
             exercises: [
+              { name: 'Sprint → Hard Stop (15m)', sets: 3, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
               { name: '5-10-5 Shuttle Drill', sets: 3, reps: 1, video: 'https://www.youtube.com/watch?v=1SnMjGJ80vA' },
-              { name: 'Lateral Bounds (skater jumps)', sets: 3, reps: '6/side', video: 'https://www.youtube.com/watch?v=S8pVw-gGwqM' },
+              { name: 'Lateral Bounds (stick landing)', sets: 3, reps: '6/side', video: 'https://www.youtube.com/watch?v=S8pVw-gGwqM' },
               { name: 'Dumbbell Bench Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=VmB1G1K7v94' },
               { name: 'Pull-ups', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g' },
               { name: 'Walking Lunges', sets: 3, reps: '10/leg', video: 'https://www.youtube.com/watch?v=L8fvypPrzzs' },
-              { name: 'Medicine Ball Slams', sets: 3, reps: 6, video: 'https://www.youtube.com/watch?v=nPlNHfnUQOg' },
               { name: 'Side Planks', sets: 2, reps: '30s/side', video: 'https://www.youtube.com/watch?v=K2VljzCC16g' },
             ]
           },
@@ -555,11 +519,12 @@ const USERS = {
           },
           {
             day: 'Friday',
-            focus: 'Acceleration & Full Body Power',
+            focus: 'Resisted → Unresisted Transfer + Power',
             exercises: [
-              { name: 'Sled/Resisted Sprints (15m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=vMVaPWKRHF8' },
-              { name: 'Free Sprints (30m)', sets: 2, reps: 1, video: 'https://www.youtube.com/watch?v=5HLbPWfEsHQ' },
-              { name: 'Broad Jumps', sets: 3, reps: 5, video: 'https://www.youtube.com/watch?v=bBLGMzPGmVo' },
+              { name: 'Wall Drill (primer)', sets: 1, reps: '6/leg', video: 'https://www.youtube.com/watch?v=pra3hWZq1xg' },
+              { name: 'Light Sled Push (10-15% BW, 10m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=vMVaPWKRHF8' },
+              { name: 'Free Acceleration (10m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
+              { name: 'Low Hurdle Hops (forward)', sets: 3, reps: 6, video: 'https://www.youtube.com/watch?v=NBY9-kTuHEk' },
               { name: 'Trap-bar Deadlifts', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=r4MzxtBKyNE' },
               { name: 'Bulgarian Split Squats', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=2C-uNgKwPLE' },
               { name: 'Overhead Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=QAQ64hK4Xxs' },
@@ -591,14 +556,16 @@ const USERS = {
         plan: [
           {
             day: 'Monday',
-            focus: 'Max Speed & Heavy Lower Body',
+            focus: 'Sprint Session + Heavy Lower Body',
             exercises: [
-              { name: 'Max Sprints (30-40m)', sets: 5, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
-              { name: 'Depth Jumps (18")', sets: 3, reps: 5, video: 'https://www.youtube.com/watch?v=bm2LDQJxNVM' },
+              { name: 'Wall Drill (static + alternating)', sets: 2, reps: '8/leg', video: 'https://www.youtube.com/watch?v=pra3hWZq1xg' },
+              { name: 'Light Sled Push (10-15% BW, 10m)', sets: 5, reps: 1, video: 'https://www.youtube.com/watch?v=vMVaPWKRHF8' },
+              { name: 'Free Acceleration (20m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
+              { name: 'Fly-In Sprint (15m build → 25m fly)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=5HLbPWfEsHQ' },
+              { name: 'Pogos (double-leg, fast contacts)', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=Vu3JkHB8jLw' },
               { name: 'Back Squats (heavy)', sets: 4, reps: '4-6', video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
               { name: 'Romanian Deadlifts', sets: 4, reps: 6, video: 'https://www.youtube.com/watch?v=7j-2w4-P14I' },
               { name: 'Weighted Step-ups', sets: 3, reps: '6/leg', video: 'https://www.youtube.com/watch?v=dQqApCGd5Ss' },
-              { name: 'Hanging Leg Raises', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=Pr1ieGZ5atk' },
             ]
           },
           {
@@ -613,14 +580,14 @@ const USERS = {
           },
           {
             day: 'Wednesday',
-            focus: 'Aggressive Agility & Upper Body Power',
+            focus: 'Decel & COD + Upper Body Power',
             exercises: [
+              { name: 'Sprint → Hard Stop (20m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
               { name: '5-10-5 Shuttle Drill', sets: 5, reps: 1, video: 'https://www.youtube.com/watch?v=1SnMjGJ80vA' },
-              { name: 'Lateral Bounds (skater jumps)', sets: 4, reps: '8/side', video: 'https://www.youtube.com/watch?v=S8pVw-gGwqM' },
+              { name: 'Lateral Bounds (continuous)', sets: 4, reps: '8/side', video: 'https://www.youtube.com/watch?v=S8pVw-gGwqM' },
               { name: 'Barbell Bench Press', sets: 4, reps: '5-7', video: 'https://www.youtube.com/watch?v=rT7DgCr-3pg' },
               { name: 'Weighted Pull-ups', sets: 4, reps: 6, video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g' },
               { name: 'Barbell Rows', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=FWJR5Ve8bnQ' },
-              { name: 'Medicine Ball Rotational Throws', sets: 3, reps: '6/side', video: 'https://www.youtube.com/watch?v=nPlNHfnUQOg' },
               { name: 'Ab Rollouts', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
             ]
           },
@@ -635,15 +602,15 @@ const USERS = {
           },
           {
             day: 'Friday',
-            focus: 'Explosive Power & Heavy Pulls',
+            focus: 'Resisted → Unresisted Transfer + Heavy Power',
             exercises: [
-              { name: 'Sled/Resisted Sprints (15m)', sets: 6, reps: 1, video: 'https://www.youtube.com/watch?v=vMVaPWKRHF8' },
-              { name: 'Free Sprints (30m)', sets: 3, reps: 1, video: 'https://www.youtube.com/watch?v=5HLbPWfEsHQ' },
-              { name: 'Depth Jumps (24")', sets: 3, reps: 5, video: 'https://www.youtube.com/watch?v=bm2LDQJxNVM' },
+              { name: 'Wall Drill (primer)', sets: 1, reps: '6/leg', video: 'https://www.youtube.com/watch?v=pra3hWZq1xg' },
+              { name: 'Light Sled Push (10-15% BW, 10m)', sets: 6, reps: 1, video: 'https://www.youtube.com/watch?v=vMVaPWKRHF8' },
+              { name: 'Free Acceleration (20m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
+              { name: 'Low Hurdle Hops (forward)', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=NBY9-kTuHEk' },
               { name: 'Trap-bar Deadlifts (heavy)', sets: 4, reps: 5, video: 'https://www.youtube.com/watch?v=r4MzxtBKyNE' },
               { name: 'Bulgarian Split Squats', sets: 3, reps: '6/leg', video: 'https://www.youtube.com/watch?v=2C-uNgKwPLE' },
               { name: 'Overhead Press', sets: 4, reps: 6, video: 'https://www.youtube.com/watch?v=QAQ64hK4Xxs' },
-              { name: 'Bent-over Rows', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=FWJR5Ve8bnQ' },
               { name: 'Nordic Hamstring Curls', sets: 3, reps: 5, video: 'https://www.youtube.com/watch?v=WnIBnBBEveE' },
             ]
           },
@@ -672,13 +639,15 @@ const USERS = {
         plan: [
           {
             day: 'Monday',
-            focus: 'Peak Speed & Explosive Lower',
+            focus: 'Peak Speed + Moderate Lower Body',
             exercises: [
-              { name: 'Max Sprints (30-40m)', sets: 6, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
-              { name: 'Depth Jumps (24")', sets: 3, reps: 4, video: 'https://www.youtube.com/watch?v=bm2LDQJxNVM' },
-              { name: 'Back Squats (peak)', sets: 5, reps: '3-5', video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
+              { name: 'Wall Drill (static + alternating)', sets: 2, reps: '6/leg', video: 'https://www.youtube.com/watch?v=pra3hWZq1xg' },
+              { name: 'Light Sled Push (10-15% BW, 10m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=vMVaPWKRHF8' },
+              { name: 'Free Acceleration (10m)', sets: 3, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
+              { name: 'Fly-In Sprint (15m build → 25m fly)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=5HLbPWfEsHQ' },
+              { name: 'Pogos (double-leg, fast contacts)', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=Vu3JkHB8jLw' },
+              { name: 'Back Squats (moderate)', sets: 3, reps: '6-8', video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
               { name: 'Romanian Deadlifts', sets: 3, reps: 6, video: 'https://www.youtube.com/watch?v=7j-2w4-P14I' },
-              { name: 'Single-leg Box Squats', sets: 3, reps: '5/leg', video: 'https://www.youtube.com/watch?v=dQqApCGd5Ss' },
               { name: 'Plank', sets: 3, reps: '45s', video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
             ]
           },
@@ -694,14 +663,14 @@ const USERS = {
           },
           {
             day: 'Wednesday',
-            focus: 'Peak Agility & Upper Body',
+            focus: 'Decel & COD + Upper Body',
             exercises: [
-              { name: '5-10-5 Shuttle Drill', sets: 5, reps: 1, video: 'https://www.youtube.com/watch?v=1SnMjGJ80vA' },
-              { name: 'Reactive Agility Drill', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=S8pVw-gGwqM' },
+              { name: 'Sprint → Hard Stop (15m)', sets: 3, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
+              { name: '5-10-5 Shuttle Drill', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=1SnMjGJ80vA' },
+              { name: 'Lateral Bounds (stick landing)', sets: 3, reps: '6/side', video: 'https://www.youtube.com/watch?v=S8pVw-gGwqM' },
               { name: 'Barbell Bench Press', sets: 3, reps: '5-7', video: 'https://www.youtube.com/watch?v=rT7DgCr-3pg' },
               { name: 'Weighted Pull-ups', sets: 3, reps: 6, video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g' },
               { name: 'Walking Lunges (light)', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=L8fvypPrzzs' },
-              { name: 'Medicine Ball Slams', sets: 2, reps: 6, video: 'https://www.youtube.com/watch?v=nPlNHfnUQOg' },
             ]
           },
           {
@@ -715,14 +684,15 @@ const USERS = {
           },
           {
             day: 'Friday',
-            focus: 'Speed Maintenance & Light Power',
+            focus: 'Speed Maintenance + Light Power',
             exercises: [
-              { name: 'Free Sprints (30m)', sets: 4, reps: 1, video: 'https://www.youtube.com/watch?v=5HLbPWfEsHQ' },
-              { name: 'Box Jumps (20")', sets: 3, reps: 4, video: 'https://www.youtube.com/watch?v=NBY9-kTuHEk' },
+              { name: 'Light Sled Push (10-15% BW, 10m)', sets: 3, reps: 1, video: 'https://www.youtube.com/watch?v=vMVaPWKRHF8' },
+              { name: 'Free Acceleration (10m)', sets: 3, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
+              { name: 'Pogos (double-leg)', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=Vu3JkHB8jLw' },
+              { name: 'Sprint → Hard Stop (10m)', sets: 3, reps: 1, video: 'https://www.youtube.com/watch?v=6kPVjnkhMos' },
               { name: 'Trap-bar Deadlifts (moderate)', sets: 3, reps: 6, video: 'https://www.youtube.com/watch?v=r4MzxtBKyNE' },
               { name: 'Bulgarian Split Squats (light)', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=2C-uNgKwPLE' },
               { name: 'Overhead Press', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=QAQ64hK4Xxs' },
-              { name: 'Bent-over Rows', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=FWJR5Ve8bnQ' },
             ]
           },
           {
@@ -1403,9 +1373,6 @@ function initApp() {
 
   // Logout button
   document.getElementById('logout-btn').addEventListener('click', logout);
-
-  // ChatGPT link
-  document.getElementById('chatgpt-link').href = CHATGPT_URL;
 
   // Week nav
   viewingWeekOffset = 0;
