@@ -46,10 +46,10 @@
     [data-theme="arsenal"] .header h1 span { color: #fff; }
     [data-theme="arsenal"] .header h1 .cannon-icon {
       display: inline-block;
-      width: 24px; height: 24px;
+      width: 28px; height: 14px;
       vertical-align: middle;
       margin-right: 6px;
-      filter: brightness(0) invert(1);
+      color: #D4AF37;
     }
     [data-theme="arsenal"] .header .arsenal-motto {
       display: block;
@@ -1429,7 +1429,7 @@ function initApp() {
   document.body.dataset.theme = currentUserPin === '1717' ? 'arsenal' : '';
   const headerH1 = document.querySelector('.header h1');
   if (currentUserPin === '1717') {
-    headerH1.innerHTML = `<svg class="cannon-icon" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><path d="M5 45 L20 45 L20 35 L75 28 L75 22 L95 22 L95 28 L85 30 L85 35 L75 37 L20 42 L20 45 Z M15 45 L15 55 L25 55 L25 45 Z" fill="currentColor"/></svg><span>Arsenal</span> FC<span class="arsenal-motto">Victoria Concordia Crescit</span>`;
+    headerH1.innerHTML = `<svg class="cannon-icon" viewBox="0 0 120 50" xmlns="http://www.w3.org/2000/svg"><path d="M8 38 C8 32 13 27 19 27 L19 24 C19 21 21 19 24 19 L30 19 L32 15 L80 10 L82 8 L115 8 L115 14 L84 14 L82 16 L32 21 L30 23 L24 23 L23 27 L30 27 C33 27 35 30 35 33 L35 38 C35 44 30 48 24 48 L19 48 C13 48 8 44 8 38 Z M17 38 A5 5 0 1 0 27 38 A5 5 0 1 0 17 38 Z" fill="currentColor" fill-rule="evenodd"/></svg><span>Arsenal</span> FC<span class="arsenal-motto">Victoria Concordia Crescit</span>`;
   } else {
     headerH1.innerHTML = '<span>Fit</span>Track';
   }
