@@ -992,261 +992,164 @@ const USERS = {
     startDate: '2026-01-27',
     phases: [
       {
-        name: 'Hypertrophy Base',
-        weeks: 4,
+        name: 'Build',
+        weeks: 3,
         plan: [
           {
             day: 'Monday',
-            focus: 'Chest & Triceps',
+            focus: 'Chest + Triceps',
             exercises: [
-              { name: 'Barbell Bench Press', sets: 4, reps: '8-10', video: 'https://www.youtube.com/watch?v=rT7DgCr-3pg' },
-              { name: 'Incline Dumbbell Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=8iPEnn-ltC8' },
-              { name: 'Cable Flyes', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=Iwe6AmxVf7o' },
-              { name: 'Dips (weighted)', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=6kALZikXxLc' },
-              { name: 'Tricep Rope Pushdowns', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=vB5OHsJ3EME' },
-              { name: 'Overhead Tricep Extension', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=YbX7Wd8jQ-Q' },
-              { name: 'Incline Treadmill Walk', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
+              { name: 'Barbell Bench Press', sets: 4, reps: '5-6', video: 'https://www.youtube.com/watch?v=rT7DgCr-3pg' },
+              { name: 'Incline DB Press', sets: 3, reps: '8-10', video: 'https://www.youtube.com/watch?v=8iPEnn-ltC8' },
+              { name: 'Weighted Dips', sets: 3, reps: 'AMRAP', video: 'https://www.youtube.com/watch?v=6kALZikXxLc' },
+              { name: 'Cable Fly (low-to-high)', sets: 3, reps: '12-15', video: 'https://www.youtube.com/watch?v=Iwe6AmxVf7o' },
+              { name: 'Rope Pushdowns', sets: 3, reps: '12-15', video: 'https://www.youtube.com/watch?v=vB5OHsJ3EME' },
+              { name: 'Push-ups (finisher)', sets: 2, reps: 'AMRAP', video: 'https://www.youtube.com/watch?v=IODxDxX7oi4' },
             ]
           },
           {
             day: 'Tuesday',
-            focus: 'Back & Biceps',
+            focus: 'Back + Biceps',
             exercises: [
-              { name: 'Barbell Rows', sets: 4, reps: '8-10', video: 'https://www.youtube.com/watch?v=FWJR5Ve8bnQ' },
-              { name: 'Lat Pulldowns', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=CAwf7n6Luuc' },
-              { name: 'Seated Cable Rows', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=GZbfZ033f74' },
-              { name: 'Face Pulls', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=rep-qVOkqgk' },
-              { name: 'Barbell Curls', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo' },
-              { name: 'Hammer Curls', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=zC3nLlEvin4' },
-              { name: 'Stairmaster / HIIT Bike', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
+              { name: 'Weighted Pull-ups', sets: 4, reps: '6-8', video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g' },
+              { name: 'Barbell Row', sets: 4, reps: '6-8', video: 'https://www.youtube.com/watch?v=FWJR5Ve8bnQ' },
+              { name: 'Single-Arm DB Row', sets: 3, reps: '10/side', video: 'https://www.youtube.com/watch?v=roCP6wCXPqo' },
+              { name: 'Lat Pulldown', sets: 3, reps: '10-12', video: 'https://www.youtube.com/watch?v=CAwf7n6Luuc' },
+              { name: 'Barbell Curl', sets: 3, reps: '8-10', video: 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo' },
+              { name: 'Hammer Curl', sets: 2, reps: '12-15', video: 'https://www.youtube.com/watch?v=zC3nLlEvin4' },
             ]
           },
           {
             day: 'Wednesday',
-            focus: 'Legs (Quad Focus)',
+            focus: 'Legs (Strength)',
             exercises: [
-              { name: 'Barbell Back Squats', sets: 4, reps: '8-10', video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
-              { name: 'Leg Press', sets: 4, reps: 12, video: 'https://www.youtube.com/watch?v=IZxyjW7MPJQ' },
-              { name: 'Walking Lunges', sets: 3, reps: '10/leg', video: 'https://www.youtube.com/watch?v=L8fvypPrzzs' },
-              { name: 'Leg Extensions', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=YyvSfVjQeL0' },
-              { name: 'Calf Raises', sets: 4, reps: 15, video: 'https://www.youtube.com/watch?v=gwLzBJYoWlI' },
-              { name: 'Hanging Leg Raises', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=Pr1ieGZ5atk' },
-            ]
-          },
-          {
-            day: 'Thursday',
-            focus: 'Shoulders & Abs',
-            exercises: [
-              { name: 'Overhead Press', sets: 4, reps: '8-10', video: 'https://www.youtube.com/watch?v=QAQ64hK4Xxs' },
-              { name: 'Lateral Raises', sets: 4, reps: 15, video: 'https://www.youtube.com/watch?v=3VcKaXpzqRo' },
-              { name: 'Rear Delt Flyes', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=EA7u4Q_8HQ0' },
-              { name: 'Cable Lateral Raises', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=PPrzBWZDOhA' },
-              { name: 'Shrugs', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=cJRVVxmytaM' },
-              { name: 'Cable Crunches', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=ToJeyhydUxU' },
-              { name: 'Incline Treadmill Walk', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
-            ]
-          },
-          {
-            day: 'Friday',
-            focus: 'Legs (Hamstring & Glute Focus)',
-            exercises: [
-              { name: 'Romanian Deadlifts', sets: 4, reps: 10, video: 'https://www.youtube.com/watch?v=7j-2w4-P14I' },
-              { name: 'Bulgarian Split Squats', sets: 3, reps: '10/leg', video: 'https://www.youtube.com/watch?v=2C-uNgKwPLE' },
-              { name: 'Leg Curls', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=1Tq3QdYUuHs' },
-              { name: 'Hip Thrusts', sets: 4, reps: 12, video: 'https://www.youtube.com/watch?v=SEdqd1n0cvg' },
-              { name: 'Calf Raises', sets: 4, reps: 15, video: 'https://www.youtube.com/watch?v=gwLzBJYoWlI' },
-              { name: 'Plank Variations', sets: 3, reps: '30s', video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
-            ]
-          },
-          {
-            day: 'Saturday',
-            focus: 'Arms & Cardio',
-            exercises: [
-              { name: 'Close-grip Bench Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=nEF0bv2FW94' },
-              { name: 'EZ-bar Curls', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo' },
-              { name: 'Skull Crushers', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=d_KZxkY_0cM' },
-              { name: 'Incline Dumbbell Curls', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=soxrZlIl35U' },
-              { name: 'Cable Curls / Pushdowns superset', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=vB5OHsJ3EME' },
-              { name: 'HIIT Cardio (bike or rowing)', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
-            ]
-          },
-          {
-            day: 'Sunday',
-            focus: 'Rest & Recovery',
-            exercises: [
-              { name: 'Full Rest / Light Walk', sets: 1, reps: '30 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
-              { name: 'Stretching / Foam Rolling', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
-            ]
-          }
-        ]
-      },
-      {
-        name: 'Strength & Intensity',
-        weeks: 4,
-        plan: [
-          {
-            day: 'Monday',
-            focus: 'Heavy Chest & Triceps',
-            exercises: [
-              { name: 'Barbell Bench Press (heavy)', sets: 5, reps: '5-7', video: 'https://www.youtube.com/watch?v=rT7DgCr-3pg' },
-              { name: 'Incline Dumbbell Press', sets: 4, reps: 8, video: 'https://www.youtube.com/watch?v=8iPEnn-ltC8' },
-              { name: 'Cable Flyes (drop set last)', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=Iwe6AmxVf7o' },
-              { name: 'Weighted Dips', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=6kALZikXxLc' },
-              { name: 'Tricep Rope Pushdowns (drop set)', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=vB5OHsJ3EME' },
-              { name: 'Overhead Tricep Extension', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=YbX7Wd8jQ-Q' },
-              { name: 'HIIT Treadmill (incline intervals)', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
-            ]
-          },
-          {
-            day: 'Tuesday',
-            focus: 'Heavy Back & Biceps',
-            exercises: [
-              { name: 'Barbell Rows (heavy)', sets: 5, reps: '5-7', video: 'https://www.youtube.com/watch?v=FWJR5Ve8bnQ' },
-              { name: 'Weighted Pull-ups', sets: 4, reps: 6, video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g' },
-              { name: 'Seated Cable Rows (drop set)', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=GZbfZ033f74' },
-              { name: 'Face Pulls', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=rep-qVOkqgk' },
-              { name: 'Barbell Curls', sets: 4, reps: 8, video: 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo' },
-              { name: 'Hammer Curls', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=zC3nLlEvin4' },
-              { name: 'HIIT Bike', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
-            ]
-          },
-          {
-            day: 'Wednesday',
-            focus: 'Heavy Legs (Quad Focus)',
-            exercises: [
-              { name: 'Barbell Back Squats (heavy)', sets: 5, reps: '5-7', video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
-              { name: 'Leg Press (heavy)', sets: 4, reps: 8, video: 'https://www.youtube.com/watch?v=IZxyjW7MPJQ' },
-              { name: 'Walking Lunges (weighted)', sets: 3, reps: '10/leg', video: 'https://www.youtube.com/watch?v=L8fvypPrzzs' },
-              { name: 'Leg Extensions (drop set)', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=YyvSfVjQeL0' },
-              { name: 'Calf Raises', sets: 4, reps: 12, video: 'https://www.youtube.com/watch?v=gwLzBJYoWlI' },
-              { name: 'Hanging Leg Raises', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=Pr1ieGZ5atk' },
-            ]
-          },
-          {
-            day: 'Thursday',
-            focus: 'Heavy Shoulders & Abs',
-            exercises: [
-              { name: 'Overhead Press (heavy)', sets: 5, reps: '5-7', video: 'https://www.youtube.com/watch?v=QAQ64hK4Xxs' },
-              { name: 'Lateral Raises', sets: 4, reps: 12, video: 'https://www.youtube.com/watch?v=3VcKaXpzqRo' },
-              { name: 'Rear Delt Flyes', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=EA7u4Q_8HQ0' },
-              { name: 'Arnold Press', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=PPrzBWZDOhA' },
-              { name: 'Shrugs (heavy)', sets: 4, reps: 10, video: 'https://www.youtube.com/watch?v=cJRVVxmytaM' },
-              { name: 'Cable Crunches', sets: 3, reps: 20, video: 'https://www.youtube.com/watch?v=ToJeyhydUxU' },
-              { name: 'HIIT Treadmill (incline intervals)', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
-            ]
-          },
-          {
-            day: 'Friday',
-            focus: 'Heavy Legs (Hamstring & Glute)',
-            exercises: [
-              { name: 'Conventional Deadlifts', sets: 5, reps: '5-7', video: 'https://www.youtube.com/watch?v=7j-2w4-P14I' },
-              { name: 'Bulgarian Split Squats (heavy)', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=2C-uNgKwPLE' },
-              { name: 'Leg Curls (drop set)', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=1Tq3QdYUuHs' },
-              { name: 'Hip Thrusts (heavy)', sets: 4, reps: 10, video: 'https://www.youtube.com/watch?v=SEdqd1n0cvg' },
-              { name: 'Calf Raises', sets: 4, reps: 12, video: 'https://www.youtube.com/watch?v=gwLzBJYoWlI' },
-              { name: 'Plank Variations', sets: 3, reps: '45s', video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
-            ]
-          },
-          {
-            day: 'Saturday',
-            focus: 'Arms & HIIT Cardio',
-            exercises: [
-              { name: 'Close-grip Bench Press', sets: 4, reps: 8, video: 'https://www.youtube.com/watch?v=nEF0bv2FW94' },
-              { name: 'EZ-bar Curls', sets: 4, reps: 8, video: 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo' },
-              { name: 'Skull Crushers (drop set)', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=d_KZxkY_0cM' },
-              { name: 'Incline Dumbbell Curls', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=soxrZlIl35U' },
-              { name: 'Cable Curls / Pushdowns superset', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=vB5OHsJ3EME' },
-              { name: 'HIIT Cardio (bike or rowing)', sets: 1, reps: '25 min', video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
-            ]
-          },
-          {
-            day: 'Sunday',
-            focus: 'Rest & Recovery',
-            exercises: [
-              { name: 'Full Rest / Light Walk', sets: 1, reps: '30 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
-              { name: 'Stretching / Foam Rolling', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
-            ]
-          }
-        ]
-      },
-      {
-        name: 'Peak Cut',
-        weeks: 4,
-        plan: [
-          {
-            day: 'Monday',
-            focus: 'Chest & Triceps (Maintain)',
-            exercises: [
-              { name: 'Barbell Bench Press (heavy)', sets: 4, reps: '5-7', video: 'https://www.youtube.com/watch?v=rT7DgCr-3pg' },
-              { name: 'Incline Dumbbell Press', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=8iPEnn-ltC8' },
-              { name: 'Cable Flyes', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=Iwe6AmxVf7o' },
-              { name: 'Tricep Rope Pushdowns', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=vB5OHsJ3EME' },
-              { name: 'Overhead Tricep Extension', sets: 2, reps: 12, video: 'https://www.youtube.com/watch?v=YbX7Wd8jQ-Q' },
-              { name: 'HIIT Treadmill (incline intervals)', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
-            ]
-          },
-          {
-            day: 'Tuesday',
-            focus: 'Back & Biceps (Maintain)',
-            exercises: [
-              { name: 'Barbell Rows (heavy)', sets: 4, reps: '5-7', video: 'https://www.youtube.com/watch?v=FWJR5Ve8bnQ' },
-              { name: 'Weighted Pull-ups', sets: 3, reps: 6, video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g' },
-              { name: 'Seated Cable Rows', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=GZbfZ033f74' },
-              { name: 'Face Pulls', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=rep-qVOkqgk' },
-              { name: 'Barbell Curls', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo' },
-              { name: 'HIIT Bike', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
-            ]
-          },
-          {
-            day: 'Wednesday',
-            focus: 'Legs (Heavy Compounds)',
-            exercises: [
-              { name: 'Barbell Back Squats (heavy)', sets: 4, reps: '5-7', video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
+              { name: 'Back Squat', sets: 5, reps: 5, video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
+              { name: 'Romanian Deadlift', sets: 4, reps: '6-8', video: 'https://www.youtube.com/watch?v=7j-2w4-P14I' },
               { name: 'Leg Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=IZxyjW7MPJQ' },
-              { name: 'Walking Lunges', sets: 3, reps: '10/leg', video: 'https://www.youtube.com/watch?v=L8fvypPrzzs' },
-              { name: 'Calf Raises', sets: 4, reps: 15, video: 'https://www.youtube.com/watch?v=gwLzBJYoWlI' },
-              { name: 'Hanging Leg Raises', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=Pr1ieGZ5atk' },
+              { name: 'Walking Lunges', sets: 3, reps: '12/leg', video: 'https://www.youtube.com/watch?v=L8fvypPrzzs' },
+              { name: 'Standing Calf Raises', sets: 4, reps: '12-15', video: 'https://www.youtube.com/watch?v=gwLzBJYoWlI' },
             ]
           },
           {
             day: 'Thursday',
-            focus: 'Shoulders & Abs + Cardio',
+            focus: 'Cardio / Conditioning',
             exercises: [
-              { name: 'Overhead Press (heavy)', sets: 4, reps: '5-7', video: 'https://www.youtube.com/watch?v=QAQ64hK4Xxs' },
-              { name: 'Lateral Raises', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=3VcKaXpzqRo' },
-              { name: 'Rear Delt Flyes', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=EA7u4Q_8HQ0' },
-              { name: 'Cable Crunches', sets: 3, reps: 20, video: 'https://www.youtube.com/watch?v=ToJeyhydUxU' },
-              { name: 'HIIT Treadmill (incline intervals)', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
+              { name: 'HIIT Intervals (30s all-out / 90s easy)', sets: 10, reps: 1, video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
+              { name: 'Incline Treadmill Walk (HR 130-145)', sets: 1, reps: '15-20 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
+              { name: 'Core / Mobility Work', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
             ]
           },
           {
             day: 'Friday',
-            focus: 'Legs (Posterior) + Cardio',
+            focus: 'Shoulders + Arms (Aesthetics)',
             exercises: [
-              { name: 'Conventional Deadlifts (heavy)', sets: 4, reps: '5-7', video: 'https://www.youtube.com/watch?v=7j-2w4-P14I' },
-              { name: 'Bulgarian Split Squats', sets: 3, reps: '8/leg', video: 'https://www.youtube.com/watch?v=2C-uNgKwPLE' },
-              { name: 'Leg Curls', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=1Tq3QdYUuHs' },
-              { name: 'Hip Thrusts', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=SEdqd1n0cvg' },
-              { name: 'Calf Raises', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=gwLzBJYoWlI' },
-              { name: 'HIIT Cardio (bike or rowing)', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
+              { name: 'Seated DB Overhead Press', sets: 4, reps: '6-8', video: 'https://www.youtube.com/watch?v=QAQ64hK4Xxs' },
+              { name: 'Lateral Raise', sets: 4, reps: '12-15', video: 'https://www.youtube.com/watch?v=3VcKaXpzqRo' },
+              { name: 'Rear Delt Fly', sets: 4, reps: '15-20', video: 'https://www.youtube.com/watch?v=EA7u4Q_8HQ0' },
+              { name: 'EZ-Bar Curl (tri-set)', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo' },
+              { name: 'Rope Pushdown (tri-set)', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=vB5OHsJ3EME' },
+              { name: 'Incline DB Curl (tri-set)', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=soxrZlIl35U' },
+              { name: 'Battle Ropes (finisher)', sets: 5, reps: '30s', video: 'https://www.youtube.com/watch?v=qFSAcKMoIp0' },
             ]
           },
           {
             day: 'Saturday',
-            focus: 'Full Body Circuit & Cardio',
+            focus: 'Legs + Core (Volume)',
+            exercises: [
+              { name: 'Front Squat or Hack Squat', sets: 4, reps: 8, video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
+              { name: 'Bulgarian Split Squat', sets: 3, reps: '10/leg', video: 'https://www.youtube.com/watch?v=2C-uNgKwPLE' },
+              { name: 'Seated Hamstring Curl', sets: 3, reps: '12-15', video: 'https://www.youtube.com/watch?v=1Tq3QdYUuHs' },
+              { name: 'Leg Extension (slow tempo)', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=YyvSfVjQeL0' },
+              { name: 'Hanging Leg Raise (circuit)', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=Pr1ieGZ5atk' },
+              { name: 'Cable Chop (circuit)', sets: 3, reps: '10/side', video: 'https://www.youtube.com/watch?v=pAplQXk3dkU' },
+              { name: 'Plank (circuit)', sets: 3, reps: '60s', video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
+            ]
+          },
+          {
+            day: 'Sunday',
+            focus: 'Off (Steps + Mobility)',
+            exercises: [
+              { name: 'Walk (12-15k steps)', sets: 1, reps: '45-60 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
+              { name: 'Stretching / Foam Rolling', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
+            ]
+          }
+        ]
+      },
+      {
+        name: 'Sharpening',
+        weeks: 1,
+        plan: [
+          {
+            day: 'Monday',
+            focus: 'Full Workout (Chest + Back)',
+            exercises: [
+              { name: 'Barbell Bench Press (lighter)', sets: 3, reps: '8-10', video: 'https://www.youtube.com/watch?v=rT7DgCr-3pg' },
+              { name: 'Incline DB Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=8iPEnn-ltC8' },
+              { name: 'Cable Fly (low-to-high)', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=Iwe6AmxVf7o' },
+              { name: 'Barbell Row', sets: 3, reps: '8-10', video: 'https://www.youtube.com/watch?v=FWJR5Ve8bnQ' },
+              { name: 'Lat Pulldown', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=CAwf7n6Luuc' },
+              { name: 'Incline Treadmill Walk', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
+            ]
+          },
+          {
+            day: 'Tuesday',
+            focus: 'Full Workout (Legs + Shoulders)',
+            exercises: [
+              { name: 'Back Squat (moderate)', sets: 4, reps: 8, video: 'https://www.youtube.com/watch?v=aclHkVaku9U' },
+              { name: 'Romanian Deadlift', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=7j-2w4-P14I' },
+              { name: 'Walking Lunges', sets: 3, reps: '10/leg', video: 'https://www.youtube.com/watch?v=L8fvypPrzzs' },
+              { name: 'Seated DB Overhead Press', sets: 3, reps: 10, video: 'https://www.youtube.com/watch?v=QAQ64hK4Xxs' },
+              { name: 'Lateral Raise', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=3VcKaXpzqRo' },
+              { name: 'Incline Treadmill Walk', sets: 1, reps: '20 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
+            ]
+          },
+          {
+            day: 'Wednesday',
+            focus: 'Light Cardio + Core',
+            exercises: [
+              { name: 'Incline Treadmill Walk', sets: 1, reps: '30 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
+              { name: 'Hanging Leg Raise', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=Pr1ieGZ5atk' },
+              { name: 'Plank', sets: 3, reps: '60s', video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
+              { name: 'Stretching / Mobility', sets: 1, reps: '10 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
+            ]
+          },
+          {
+            day: 'Thursday',
+            focus: 'Upper Body Pump Only (30-40 min)',
+            exercises: [
+              { name: 'Cable Fly', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=Iwe6AmxVf7o' },
+              { name: 'Lat Pulldown', sets: 3, reps: 12, video: 'https://www.youtube.com/watch?v=CAwf7n6Luuc' },
+              { name: 'Lateral Raise', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=3VcKaXpzqRo' },
+              { name: 'EZ-Bar Curl', sets: 2, reps: 12, video: 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo' },
+              { name: 'Rope Pushdown', sets: 2, reps: 12, video: 'https://www.youtube.com/watch?v=vB5OHsJ3EME' },
+              { name: 'Light Cardio (walk)', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=hMf1EvFQl1Y' },
+            ]
+          },
+          {
+            day: 'Friday',
+            focus: 'Rest Day',
+            exercises: [
+              { name: 'Walk (easy pace)', sets: 1, reps: '30-45 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
+              { name: 'Full Body Stretch', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
+              { name: 'Hydrate & Rest', sets: 1, reps: 'All day', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
+            ]
+          },
+          {
+            day: 'Saturday',
+            focus: 'Short Pump Workout (optional)',
             exercises: [
               { name: 'Push-ups', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=IODxDxX7oi4' },
-              { name: 'Pull-ups', sets: 3, reps: 8, video: 'https://www.youtube.com/watch?v=eGo4IYlbE5g' },
-              { name: 'Goblet Squats', sets: 3, reps: 15, video: 'https://www.youtube.com/watch?v=MeIiIdhvXT4' },
-              { name: 'Plank Variations', sets: 3, reps: '45s', video: 'https://www.youtube.com/watch?v=ASdvN_XEl_c' },
-              { name: 'HIIT Cardio (bike or rowing)', sets: 1, reps: '30 min', video: 'https://www.youtube.com/watch?v=W7EqEn5OPGI' },
+              { name: 'Cable Fly', sets: 2, reps: 15, video: 'https://www.youtube.com/watch?v=Iwe6AmxVf7o' },
+              { name: 'Lateral Raise', sets: 2, reps: 15, video: 'https://www.youtube.com/watch?v=3VcKaXpzqRo' },
+              { name: 'Barbell Curl', sets: 2, reps: 12, video: 'https://www.youtube.com/watch?v=ykJmrZ5v0Oo' },
+              { name: 'Rope Pushdown', sets: 2, reps: 12, video: 'https://www.youtube.com/watch?v=vB5OHsJ3EME' },
             ]
           },
           {
             day: 'Sunday',
-            focus: 'Rest & Recovery',
+            focus: 'Off',
             exercises: [
-              { name: 'Full Rest / Light Walk', sets: 1, reps: '30 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
+              { name: 'Light Walk', sets: 1, reps: '30 min', video: 'https://www.youtube.com/watch?v=menYU-FoHTI' },
               { name: 'Stretching / Foam Rolling', sets: 1, reps: '15 min', video: 'https://www.youtube.com/watch?v=g_tea8ZNorA' },
             ]
           }
