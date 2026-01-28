@@ -27,6 +27,17 @@
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
 
+    /* Arsenal FC theme for Tate */
+    [data-theme="arsenal"] {
+      --accent: #DB0007;
+      --accent-dim: #9C0004;
+    }
+    [data-theme="arsenal"] .streak-badge .fire { color: #DB0007; }
+    [data-theme="arsenal"] .user-week-pill {
+      background: rgba(219, 0, 7, 0.15);
+      color: #DB0007;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg);
@@ -460,7 +471,7 @@
 <script>
 // ── AVATAR COLORS ──
 const AVATAR_COLORS = {
-  'T': '#00e676',
+  'T': '#DB0007',
   'E': '#ff9800',
   'C': '#42a5f5'
 };
@@ -1342,6 +1353,15 @@ function logout() {
 
 // ── APP INIT ──
 function initApp() {
+  // Theme
+  document.body.dataset.theme = currentUserPin === '1717' ? 'arsenal' : '';
+  const headerH1 = document.querySelector('.header h1');
+  if (currentUserPin === '1717') {
+    headerH1.innerHTML = '<span>Arsenal</span> FC';
+  } else {
+    headerH1.innerHTML = '<span>Fit</span>Track';
+  }
+
   // User bar
   const initial = currentUser.name.charAt(0).toUpperCase();
   const avatarEl = document.getElementById('user-avatar');
