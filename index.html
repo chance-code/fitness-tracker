@@ -1372,7 +1372,9 @@ function initApp() {
     }
   });
   document.getElementById('week-nav-next').addEventListener('click', () => {
-    if (viewingWeekOffset < 0) {
+    const totalWeeks = getTotalWeeks(currentUser);
+    const maxOffset = totalWeeks - currentPhaseInfo.weekNum;
+    if (viewingWeekOffset < maxOffset) {
       viewingWeekOffset++;
       renderWeekSummary();
       renderDayCards();
@@ -1413,7 +1415,7 @@ function renderWeekSummary() {
   }
 
   prevBtn.disabled = viewWeekNum <= 1;
-  nextBtn.disabled = viewingWeekOffset >= 0;
+  nextBtn.disabled = viewWeekNum >= getTotalWeeks(currentUser);
   readonlyNote.classList.toggle('visible', viewingWeekOffset !== 0);
 
   // Update summary label
